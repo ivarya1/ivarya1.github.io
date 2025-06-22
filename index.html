@@ -145,6 +145,37 @@
   loadXKCDPopup();
 </script>
 
+<script>
+  function setCookie(name, value, days) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = name + "=" + encodeURIComponent(value) + "; expires=" + expires + "; path=/";
+  }
+
+  function getCookie(name) {
+    return document.cookie.split('; ').reduce((r, v) => {
+      const parts = v.split('=');
+      return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+    }, '');
+  }
+
+  function handleVisitMessage() {
+    const lastVisit = getCookie("lastVisit");
+    const now = new Date().toLocaleString();
+    const messageBox = document.getElementById("visit-message");
+
+    if (!lastVisit) {
+      messageBox.innerHTML = "👋 Welcome to my homepage for the first time!";
+    } else {
+      messageBox.innerHTML = `👋 Welcome back! Your last visit was <strong>${lastVisit}</strong>`;
+    }
+
+    setCookie("lastVisit", now, 30); // store visit for 30 days
+  }
+
+  handleVisitMessage();
+</script>
+
+
 
 
 </body>
