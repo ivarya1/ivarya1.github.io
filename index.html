@@ -11,6 +11,9 @@
   <div class="container mt-5">
     <div class="card shadow p-4">
       <div class="card-body">
+
+      	<div id="visit-message" class="alert alert-info mt-3"></div>
+
        
         <h1 class="text-primary">Alex Ivary</h1>
         <h2 class="text-secondary">Web Developer | Student at University of Dayton</h2>
@@ -128,6 +131,38 @@
 
   loadXKCD();
 </script>
+
+<script>
+  function setCookie(name, value, days) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = name + "=" + encodeURIComponent(value) + "; expires=" + expires + "; path=/";
+  }
+
+  function getCookie(name) {
+    return document.cookie.split('; ').reduce((r, v) => {
+      const parts = v.split('=');
+      return parts[0] === name ? decodeURIComponent(parts[1]) : r
+    }, '');
+  }
+
+  function handleVisitMessage() {
+    const lastVisit = getCookie("lastVisit");
+    const now = new Date().toLocaleString();
+    const messageBox = document.getElementById("visit-message");
+
+    if (!lastVisit) {
+      messageBox.innerHTML = "👋 Welcome to my homepage for the first time!";
+    } else {
+      messageBox.innerHTML = `👋 Welcome back! Your last visit was <strong>${lastVisit}</strong>`;
+    }
+
+    // Set/update cookie with current date/time
+    setCookie("lastVisit", now, 30);  // expires in 30 days
+  }
+
+  handleVisitMessage();
+</script>
+
 
 </body>
 </html>
