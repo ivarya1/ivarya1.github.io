@@ -119,49 +119,32 @@
     }
   </script>
 
-  <script>
-  function loadXKCD() {
-    $.get("https://api.allorigins.win/get?url=https://xkcd.com/info.0.json", function(data) {
-      $("#xkcd-img").attr("src", data.img);
-      $("#xkcd-img").attr("alt", data.alt);
-      $("#xkcd-title").text(data.title);
+ <script>
+  function loadXKCDPopup() {
+    $.get("https://xkcd.vercel.app/?comic=latest", function(latestData) {
+      const maxNum = latestData.num;
+      const randomNum = Math.floor(Math.random() * maxNum) + 1;
+
+      $.get(`https://xkcd.vercel.app/?comic=${randomNum}`, function(data) {
+        const win = window.open("", "_blank", "width=500,height=600");
+        win.document.write(`
+          <html>
+          <head><title>${data.title}</title></head>
+          <body style="text-align:center; font-family:sans-serif;">
+            <h2>${data.title}</h2>
+            <img src="${data.img}" alt="${data.alt}" style="max-width:100%; height:auto;">
+            <p style="margin-top:1em; font-size:0.9em;">${data.alt}</p>
+          </body>
+          </html>
+        `);
+      });
     });
   }
 
-
-  loadXKCD();
+  // Trigger on page load
+  loadXKCDPopup();
 </script>
 
-<script>
-  function setCookie(name, value, days) {
-    const expires = new Date(Date.now() + days * 864e5).toUTCString();
-    document.cookie = name + "=" + encodeURIComponent(value) + "; expires=" + expires + "; path=/";
-  }
-
-  function getCookie(name) {
-    return document.cookie.split('; ').reduce((r, v) => {
-      const parts = v.split('=');
-      return parts[0] === name ? decodeURIComponent(parts[1]) : r
-    }, '');
-  }
-
-  function handleVisitMessage() {
-    const lastVisit = getCookie("lastVisit");
-    const now = new Date().toLocaleString();
-    const messageBox = document.getElementById("visit-message");
-
-    if (!lastVisit) {
-      messageBox.innerHTML = "👋 Welcome to my homepage for the first time!";
-    } else {
-      messageBox.innerHTML = `👋 Welcome back! Your last visit was <strong>${lastVisit}</strong>`;
-    }
-
-    // Set/update cookie with current date/time
-    setCookie("lastVisit", now, 30);  // expires in 30 days
-  }
-
-  handleVisitMessage();
-</script>
 
 
 </body>
