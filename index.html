@@ -120,30 +120,22 @@
   </script>
 
  <script>
-  function loadXKCDPopup() {
+  function loadXKCD() {
     $.get("https://xkcd.vercel.app/?comic=latest", function(latestData) {
       const maxNum = latestData.num;
       const randomNum = Math.floor(Math.random() * maxNum) + 1;
 
       $.get(`https://xkcd.vercel.app/?comic=${randomNum}`, function(data) {
-        const win = window.open("", "_blank", "width=500,height=600");
-        win.document.write(`
-          <html>
-          <head><title>${data.title}</title></head>
-          <body style="text-align:center; font-family:sans-serif;">
-            <h2>${data.title}</h2>
-            <img src="${data.img}" alt="${data.alt}" style="max-width:100%; height:auto;">
-            <p style="margin-top:1em; font-size:0.9em;">${data.alt}</p>
-          </body>
-          </html>
-        `);
+        $("#xkcd-img").attr("src", data.img);
+        $("#xkcd-img").attr("alt", data.alt);
+        $("#xkcd-title").text(data.title);
       });
     });
   }
 
-  // Trigger on page load
-  loadXKCDPopup();
+  loadXKCD();
 </script>
+
 
 <script>
   function setCookie(name, value, days) {
@@ -161,19 +153,20 @@
   function handleVisitMessage() {
     const lastVisit = getCookie("lastVisit");
     const now = new Date().toLocaleString();
-    const messageBox = document.getElementById("visit-message");
 
     if (!lastVisit) {
-      messageBox.innerHTML = "👋 Welcome to my homepage for the first time!";
+      alert("👋 Welcome to my homepage for the first time!");
     } else {
-      messageBox.innerHTML = `👋 Welcome back! Your last visit was <strong>${lastVisit}</strong>`;
+      alert(`👋 Welcome back! Your last visit was ${lastVisit}`);
     }
 
     setCookie("lastVisit", now, 30); // store visit for 30 days
   }
 
+
   handleVisitMessage();
 </script>
+
 
 
 
