@@ -19,6 +19,14 @@
 		<h4>Programming Joke of the Minute</h4>
 		<div id="response" class="border rounded p-3 bg-light text-dark"></div>
 
+		<hr>
+		<h4>Random XKCD Comic</h4>
+		<div id="xkcd-box" class="text-center">
+		  <img id="xkcd-img" class="img-fluid border shadow" alt="XKCD Comic">
+		  <p id="xkcd-title" class="mt-2 fw-semibold"></p>
+		</div>
+
+
 
         
         <div class="mt-4 mb-3">
@@ -106,5 +114,19 @@
       email.style.display = (email.style.display === "none") ? "inline" : "none";
     }
   </script>
+
+  <script>
+  function loadXKCD() {
+    $.get("https://xkcd.now.sh/?comic=random", function(data) {
+      $("#xkcd-img").attr("src", data.img);
+      $("#xkcd-img").attr("alt", data.alt);
+      $("#xkcd-title").text(data.title);
+    });
+  }
+
+
+  loadXKCD();
+</script>
+
 </body>
 </html>
