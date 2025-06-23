@@ -12,7 +12,6 @@
     <div class="card shadow p-4">
       <div class="card-body">
 
-      	<div id="visit-message" class="alert alert-info mt-3"></div>
 
        
         <h1 class="text-primary">Alex Ivary</h1>
@@ -155,9 +154,9 @@
     const now = new Date().toLocaleString();
 
     if (!lastVisit) {
-      alert("👋 Welcome to my homepage for the first time!");
+      alert("Welcome to my homepage for the first time!");
     } else {
-      alert(`👋 Welcome back! Your last visit was ${lastVisit}`);
+      alert(`Welcome back! Your last visit was ${lastVisit}`);
     }
 
     setCookie("lastVisit", now, 30); // store visit for 30 days
