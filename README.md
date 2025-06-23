@@ -22,10 +22,11 @@ This is a private repository for Alex Ivary to store all code for my assignments
 
 ## Overview and Requirements
 
-##  In this project, you will expand front-end web development skills by developing a Professional Profile Website and deploying it on github.io cloud service. This project has general, non-technical, and technical requirements with grade distributions as follows.
-General requirements (30 pts):
+In this project, you will expand front-end web development skills by developing a Professional Profile Website and deploying it on github.io cloud service. This project has general, non-technical, and technical requirements with grade distributions as follows.
+## General requirements (30 pts):
 
-## Create and deploy a personal website on GitHub cloud (github.io) as a professional profile with your resume, including your name, headshot, contact information, background, e.g., education, your experiences and skills (25 pts).
+Create and deploy a personal website on GitHub cloud (github.io) as a professional profile with your resume, including your name, headshot, contact information, background, e.g., education, your experiences and skills 
+## (25 pts).
 Create a link to a new HTML page to introduce this "Web Application Programming and Hacking" course and related hands-on projects (5 pts)
 
 ## Non-technical requirements (20 pts)
