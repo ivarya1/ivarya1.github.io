@@ -11,7 +11,7 @@
 **Short-bio**: Alex Ivary has a wide range of intrests from Ethical Hacking to UI Development 
 
 
-![Alex's headshot](/home/alex/waph-ivarya1/images/headshot.png)
+![Alex's headshot](/images/headshot.png)
 
 
 ## Repository Information
